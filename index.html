@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+<meta charset="utf-7">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="/lib/rapidz.css">
+<title>Binary to ASCII Text Converter</title>
+</head>
+
+<body align="middle">
+
+	
+<div id="lcol" align="middle">
+
+	<div id="doc">
+
+	<h1>Binary to Text converter</h1>
+	<p>Enter binary number</p>
+	<form name="calcform">
+	<table class="calc">
+		<tr>
+			<td><textarea name="bin" rows="8" cols="60" class="intext" placeholder="Binary input ..." tabindex="1" autofocus></textarea></td>
+		</tr>
+		<tr>
+		  	<td>
+				<button type="button" title="Convert" class="btn" tabindex="2" onclick="OnConvert()"> Convert</button>
+				<button type="reset" title="Reset" class="btn" tabindex="3"> Reset</button>
+				
+		  	</td>
+		</tr>
+		<tr>
+			<td><textarea name="txt" rows="8" cols="60" readonly="readonly" class="outtext" placeholder="ASCII text output ..." tabindex="5"></textarea></td>
+		</tr>
+		
+	</table>
+	</form>
+
+	<script>
+		function OnConvert()
+		{
+			bin = document.calcform.bin.value;
+			//bin = bin.match(/[0-1]{8}/g);
+			bin = bin.match(/[0-1]{1,8}/g);
+			if( !bin ) return;
+			len = bin.length;
+			if( len==0 ) return;
+			txt='';
+			for(i=0; i<len; i++)
+			{
+				b = bin[i];
+				code = parseInt(b,2);
+				t = String.fromCharCode(code);
+				txt += t;
+			}
+			document.calcform.txt.value = txt;
+		}
+		function OnSelect()
+		{
+			document.calcform.txt.select();
+		}
+	</script>
+
+</body>
+
+
+</html>
